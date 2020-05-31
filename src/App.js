@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Landscape from "./components/Landscape";
+import Buttons from "./components/Buttons";
 import { useInterval } from "./hooks/useInterval";
 
 function App() {
@@ -95,7 +96,9 @@ function App() {
   });
 
   const keyPressHandler = (e) => {
-    e.preventDefault();
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
     if (inputBlocked) {
       return;
     }
@@ -140,6 +143,7 @@ function App() {
     <div className="App">
       <h1>Frogger</h1>
       <Landscape frog={frog} boats={boats} trucks={trucks} />
+      <Buttons onPress={keyPressHandler} />
     </div>
   );
 }

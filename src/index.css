@@ -11,10 +11,16 @@ body {
 }
 
 h1 {
-  text-align: center;
+  text-align: right;
   letter-spacing: 3px;
   font-size: 42px;
-  margin: 50px 0;
+  margin: 50px 50px 0 50px;
+  -webkit-transform: skew(-63deg, 26.6deg);
+  -moz-transform: skew(-63deg, 26.6deg);
+  -o-transform: skew(-63deg, 26.6deg);
+  -ms-transform: skew(-63deg, 26.6deg);
+  transform: skew(-63deg, 26.6deg);
+  text-shadow: 0 0 3px #89b549;
 }
 
 img {
@@ -58,4 +64,20 @@ img {
   z-index: 1100;
   width: 5vw;
   height: 5vw;
+}
+.buttons {
+  margin-top: 100px;
+  margin-left: 20px;
+}
+.button {
+  text-align: center;
+  font-size: 24px;
+  line-height: 100px;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #89b549;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
