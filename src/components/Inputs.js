@@ -1,39 +1,32 @@
-import React, { useEffect } from "react";
-import { atom, useRecoilState } from "recoil";
+import React, { useEffect, useCallback } from "react";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
 
-function Buttons() {
+function Inputs() {
   const frogState = atom({
     key: "frogState",
     default: { x: 4, y: 8, dir: "up" },
   });
   const [frog, setFrog] = useRecoilState(frogState);
-  const inputBlockedState = atom({
-    key: "inputBlockedState",
-    default: false,
-  });
-  const [inputBlocked, setInputBlocked] = useRecoilState(inputBlockedState);
+  // const inputBlockedState = atom({
+  //   key: "inputBlockedState",
+  //   default: false,
+  // });
+  // const [inputBlocked, setInputBlocked] = useRecoilState(inputBlockedState);
+  const gameOver = useRecoilValue(atom({ key: "gameOverState" }));
 
-  useEffect(() => {
-    window.addEventListener("keydown", keyPressHandler);
-    return () => {
-      window.removeEventListener("keydown", keyPressHandler);
-    };
-  });
-  // TODO
-  const gameOver = false;
-
-  const keyPressHandler = (e) => {
-    if (e.preventDefault) {
-      e.preventDefault();
-    }
-    if (inputBlocked) {
-      return;
-    }
-    setInputBlocked(true);
-    setTimeout(() => {
-      setInputBlocked(false);
-    }, 250);
-    if (!gameOver) {
+  const keyPressHandler = useCallback(
+    (e) => {
+      console.log("keypress");
+      if (e.preventDefault) {
+        e.preventDefault();
+      }
+      if (gameOver) {
+        return;
+      }
+      // if (inputBlocked) {
+      //   return;
+      // }
+      // setInputBlocked(true);
       if (e.keyCode === 37) {
         // left
         setFrog({
@@ -63,8 +56,27 @@ function Buttons() {
           dir: "down",
         });
       }
-    }
-  };
+    },
+    [frog, setFrog, gameOver]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", keyPressHandler);
+    return () => {
+      window.removeEventListener("keydown", keyPressHandler);
+    };
+  }, [keyPressHandler]);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setInputBlocked(false);
+  //   }, 250);
+  //   return () => {
+  //     setInputBlocked(false);
+  //     clearInterval(timer);
+  //   };
+  // }, [inputBlockedState, setInputBlocked]);
+
   return (
     <div className="buttons">
       <div
@@ -105,4 +117,4 @@ function Buttons() {
   );
 }
 
-export default Buttons;
+export default Inputs;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { atom, useRecoilState } from "recoil";
 import { useInterval } from "../hooks/useInterval";
 import MovingObject from "./MovingObject";
@@ -7,13 +7,13 @@ function Boats() {
   const boatsState = atom({
     key: "boatsState",
     default: [
-      { x: -1, y: 2, dir: "down", id: Math.random() },
-      { x: 9, y: 1, dir: "up", id: Math.random() },
+      { x: -1, y: 2, dir: "down", id: Math.random().toString(36).substr(2, 9) },
+      { x: 9, y: 1, dir: "up", id: Math.random().toString(36).substr(2, 9) },
     ],
   });
   const [boats, setBoats] = useRecoilState(boatsState);
 
-  useInterval(() => {
+  const moveBoats = useCallback(() => {
     let boatsCopy = [...boats];
     boatsCopy = boatsCopy.map((boat) => {
       if (boat.dir === "up") {
@@ -32,13 +32,13 @@ function Boats() {
     if (!boatsCopy.filter((boat) => boat.x === 7 || boat.x === 1).length) {
       newBoats.push(
         {
-          id: Math.random(),
+          id: Math.random().toString(36).substr(2, 9),
           x: 9,
           y: 1,
           dir: "up",
         },
         {
-          id: Math.random(),
+          id: Math.random().toString(36).substr(2, 9),
           x: -1,
           y: 2,
           dir: "down",
@@ -52,7 +52,12 @@ function Boats() {
         })
         .concat(newBoats)
     );
-  }, 750);
+  }, [boats, setBoats]);
+
+  useInterval(() => {
+    moveBoats();
+  }, 350);
+
   return (
     <>
       {boats.map((boat) => {

@@ -1,18 +1,20 @@
 import React from "react";
 import { atom, useRecoilValue } from "recoil";
-import { frogNE, frogNW, frogSE, frogSW } from "../images";
+import { frogDead, frogNE, frogNW, frogSE, frogSW } from "../images";
 import { WORLD_SIZE, TILE_ASPECT_RATIO } from "../constants";
 
 function Frog() {
   const frogState = atom({
     key: "frogState",
-    default: { x: 4, y: 8, dir: "up" },
+    default: { x: 4, y: 8, dir: "up", dead: false },
   });
   const frog = useRecoilValue(frogState);
 
   // Get corrrect image from direction
   let src;
-  if (frog.dir === "up") {
+  if (frog.dead) {
+    src = frogDead;
+  } else if (frog.dir === "up") {
     src = frogNE;
   } else if (frog.dir === "down") {
     src = frogSW;
@@ -32,7 +34,7 @@ function Frog() {
   return (
     <img
       alt="frog"
-      className="frog"
+      className={`frog ${frog.dead && "dead"}`}
       style={{ top: `${yAbs}%`, left: `${xAbs}%` }}
       src={src}
     />

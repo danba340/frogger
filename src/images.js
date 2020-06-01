@@ -15,10 +15,12 @@ import waterBeachAbove from "./images/water_beach_above.png";
 import waterBeachBelow from "./images/water_beach_below.png";
 import waterGrassAbove from "./images/water_grass_above.png";
 import waterGrassBelow from "./images/water_grass_below.png";
+import frogDead from "./images/skull.png";
 
 export {
   boatUp,
   boatDown,
+  frogDead,
   frogNE,
   frogNW,
   frogSE,

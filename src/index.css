@@ -44,7 +44,15 @@ img {
   position: absolute;
   z-index: 1000;
   transform: translate(-50%, -50%);
-  transition: top 0.2s ease-in, left 0.2s ease-in;
+  transition: top 0.35s linear, left 0.35s linear, transform 0.35s linear;
+}
+.frog.dead {
+  -webkit-transform: skew(-63deg, 26.6deg);
+  -moz-transform: skew(-63deg, 26.6deg);
+  -o-transform: skew(-63deg, 26.6deg);
+  -ms-transform: skew(-63deg, 26.6deg);
+  transform: skew(-63deg, 26.6deg) scaleY(0.5);
+  text-shadow: 0 0 3px #89b549;
 }
 
 .boat,
@@ -56,7 +64,7 @@ img {
   z-index: 900;
   width: 5vw;
   transform: translateX(-50%);
-  transition: top 0.75s linear, left 0.75s linear, opacity 0.5s linear;
+  transition: top 0.35s linear, left 0.35s linear, opacity 0.5s linear;
 }
 
 .truck {
@@ -87,4 +95,23 @@ img {
   .button {
     display: none;
   }
+}
+
+.score-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 20px 0;
+  font-size: 3vw;
+}
+.score-bar svg {
+  width: 4vw;
+}
+.score-bar span {
+  line-height: 50px;
+  padding: 0 10px;
+}
+.score-bar .score {
+  margin-right: 20px;
 }
