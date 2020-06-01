@@ -1,23 +1,33 @@
 import React from "react";
+import { atom, useRecoilValue } from "recoil";
 import { frogNE, frogNW, frogSE, frogSW } from "../images";
 import { WORLD_SIZE, TILE_ASPECT_RATIO } from "../constants";
 
-function Frog({ x, y, direction }) {
-  const yOffset = ((100 / WORLD_SIZE) * TILE_ASPECT_RATIO) / 1.8;
-  const yBase = yOffset * y + yOffset / 1.8;
-  const xBase = 50 - (100 / 18) * y;
-  const xAbs = xBase + (50 / 9) * x;
-  const yAbs = yBase + yOffset * x;
+function Frog() {
+  const frogState = atom({
+    key: "frogState",
+    default: { x: 4, y: 8, dir: "up" },
+  });
+  const frog = useRecoilValue(frogState);
+
+  // Get corrrect image from direction
   let src;
-  if (direction === "up") {
+  if (frog.dir === "up") {
     src = frogNE;
-  } else if (direction === "down") {
+  } else if (frog.dir === "down") {
     src = frogSW;
-  } else if (direction === "left") {
+  } else if (frog.dir === "left") {
     src = frogNW;
-  } else if (direction === "right") {
+  } else if (frog.dir === "right") {
     src = frogSE;
   }
+
+  // Calc abs position
+  const yOffset = ((100 / WORLD_SIZE) * TILE_ASPECT_RATIO) / 1.8;
+  const yBase = yOffset * frog.y + yOffset / 1.8;
+  const xBase = 50 - (100 / 18) * frog.y;
+  const xAbs = xBase + (50 / 9) * frog.x;
+  const yAbs = yBase + yOffset * frog.x;
 
   return (
     <img

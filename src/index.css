@@ -13,7 +13,7 @@ body {
 h1 {
   text-align: right;
   letter-spacing: 3px;
-  font-size: 24px;
+  font-size: 3vw;
   margin: 50px 50px 0 50px;
   -webkit-transform: skew(-63deg, 26.6deg);
   -moz-transform: skew(-63deg, 26.6deg);
@@ -28,7 +28,7 @@ img {
   height: 3vw;
 }
 
-.landscape {
+.world {
   min-height: calc(100vw * (1 / 3));
   position: relative;
 }
@@ -50,13 +50,13 @@ img {
 .boat,
 .truck {
   position: absolute;
-  transition: top 0.75s linear, left 0.75s linear, opacity 0.75s linear;
 }
 
 .boat {
   z-index: 900;
   width: 5vw;
   transform: translateX(-50%);
+  transition: top 0.75s linear, left 0.75s linear, opacity 0.5s linear;
 }
 
 .truck {
@@ -64,6 +64,7 @@ img {
   z-index: 1100;
   width: 5vw;
   height: 5vw;
+  transition: top 0.35s linear, left 0.35s linear, opacity 0.5s linear;
 }
 .buttons {
   margin-top: 100px;
@@ -72,7 +73,7 @@ img {
 }
 .button {
   text-align: center;
-  font-size: 32px;
+  font-size: 26px;
   line-height: 100px;
   display: inline-block;
   width: 100px;
@@ -81,4 +82,9 @@ img {
   border-radius: 5px;
   margin-top: 20px;
   margin-right: 20px;
+}
+@media screen and (min-width: 600px) {
+  .button {
+    display: none;
+  }
 }
