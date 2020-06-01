@@ -79,7 +79,7 @@ function Landscape() {
                 z={z}
               />
             );
-          } else if (tile === "waterGrassBelow") {
+          } else {
             return (
               <Tile
                 key={`${x}${y}`}

@@ -21,7 +21,7 @@ function Boats() {
           ...boat,
           x: parseInt(boat.x - 1),
         };
-      } else if (boat.dir === "down") {
+      } else {
         return {
           ...boat,
           x: parseInt(boat.x) + 1,

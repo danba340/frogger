@@ -20,6 +20,7 @@ function MovingObject({ x, y, type, dir }) {
   }
   return (
     <img
+      alt={type}
       className={`${type}`}
       style={{
         top: `${yAbs}%`,

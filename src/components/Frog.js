@@ -31,6 +31,7 @@ function Frog() {
 
   return (
     <img
+      alt="frog"
       className="frog"
       style={{ top: `${yAbs}%`, left: `${xAbs}%` }}
       src={src}

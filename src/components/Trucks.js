@@ -20,7 +20,7 @@ function Trucks() {
           ...truck,
           x: parseInt(truck.x) - 1,
         };
-      } else if (truck.dir === "down") {
+      } else {
         return {
           ...truck,
           x: parseInt(truck.x) + 1,
