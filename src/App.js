@@ -8,7 +8,16 @@ function App() {
     <RecoilRoot>
       <div className="App">
         <ScoreBar />
-        <h1>Frogger</h1>
+        <h1>
+          <span role="img" aria-label="flag">
+            🏁
+          </span>
+          FROGGER
+          <span role="img" aria-label="flag">
+            {" "}
+            🏁
+          </span>
+        </h1>
         <Frogger />
       </div>
     </RecoilRoot>

@@ -22,7 +22,7 @@ export const ridingBoat = (frog, boats) => {
 };
 
 export const hasReachedGoal = (frog) => {
-  return frog.y === 0;
+  return frog.y === -1;
 };
 
 export const objectsIdentical = (o1, o2) => {

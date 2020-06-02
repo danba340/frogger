@@ -70,7 +70,6 @@ function Frogger() {
   useEffect(() => {
     // Check for reaching goal
     if (hasReachedGoal(frog)) {
-      debugger;
       setScore(score + 1);
       if (score + 1 > highScore) {
         setHighScore(score + 1);

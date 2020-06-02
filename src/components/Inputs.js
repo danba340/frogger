@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback, useRef } from "react";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
+import ArrowsIcon from "./ArrowsIcon";
 
 function Inputs() {
   const frogState = atom({
@@ -53,7 +54,7 @@ function Inputs() {
         // up
         setFrog({
           x: frog.x,
-          y: frog.y > 0 ? frog.y - 1 : 0,
+          y: frog.y > -1 ? frog.y - 1 : 0,
           dir: "up",
         });
       } else if (e.keyCode === 40) {
@@ -87,6 +88,9 @@ function Inputs() {
 
   return (
     <div className="buttons w-100">
+      <div className="arrows">
+        <ArrowsIcon />
+      </div>
       <div className="flex justify-between">
         <div
           onClick={() => {

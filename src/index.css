@@ -48,6 +48,16 @@ img {
   height: auto;
   transform: translateX(-50%);
 }
+.goal {
+  position: absolute;
+  width: calc(60vh * (1 / 0.75));
+  top: 0;
+  -webkit-transform: skew(-63deg, 26.6deg);
+  -moz-transform: skew(-63deg, 26.6deg);
+  -o-transform: skew(-63deg, 26.6deg);
+  -ms-transform: skew(-63deg, 26.6deg);
+  transform: skew(-63deg, 26.6deg);
+}
 
 .frog {
   position: absolute;
@@ -56,10 +66,10 @@ img {
   transition: top 0.35s linear, left 0.35s linear, transform 0.35s linear;
 }
 .frog.dead {
-  -webkit-transform: skew(-63deg, 26.6deg);
-  -moz-transform: skew(-63deg, 26.6deg);
-  -o-transform: skew(-63deg, 26.6deg);
-  -ms-transform: skew(-63deg, 26.6deg);
+  -webkit-transform: skew(-63deg, 26.6deg) scaleY(0.5);
+  -moz-transform: skew(-63deg, 26.6deg) scaleY(0.5);
+  -o-transform: skew(-63deg, 26.6deg) scaleY(0.5);
+  -ms-transform: skew(-63deg, 26.6deg) scaleY(0.5);
   transform: skew(-63deg, 26.6deg) scaleY(0.5);
   text-shadow: 0 0 3px #89b549;
 }
@@ -107,9 +117,17 @@ img {
   border: 1px solid #89b549;
   border-radius: 50%;
 }
+.arrows svg {
+  width: 100px;
+  display: none;
+  margin-left: 10px;
+}
 @media screen and (min-width: 1025px) {
   .button {
     display: none;
+  }
+  .arrows svg {
+    display: block;
   }
 }
 @media screen and (min-width: 567px) {
@@ -124,6 +142,7 @@ img {
 }
 
 .score-bar {
+  padding: 10px 0;
   width: 100%;
   text-align: center;
   display: flex;
@@ -149,6 +168,7 @@ img {
   margin-right: 20px;
 }
 .score-bar .button {
+  display: block;
   border-radius: 5px;
   line-height: 30px;
   height: 30px;
@@ -157,4 +177,5 @@ img {
   font-size: 14px;
   background-color: #222;
   border: 1px solid #89b549;
+  z-index: 2000;
 }
