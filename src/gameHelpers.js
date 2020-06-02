@@ -6,7 +6,7 @@ export const isTruckCollision = (frog, trucks) => {
 
 export const isDrowning = (frog, boats) => {
   const boatUnderFrog = boats.some(
-    (boat) => boat.x === frog.x && boat.y === frog.y
+    (boat) => boat.y === frog.y && Math.abs(boat.x - frog.x) <= 1
   );
   if (WATER_TILES_Y_INDEXES.includes(frog.y) && !boatUnderFrog) {
     return true;
@@ -16,9 +16,15 @@ export const isDrowning = (frog, boats) => {
 };
 
 export const ridingBoat = (frog, boats) => {
-  return boats.find((boat) => boat.x === frog.x && boat.y === frog.y);
+  return boats.find((boat) => {
+    return boat.y === frog.y && Math.abs(boat.x - frog.x) <= 1;
+  });
 };
 
 export const hasReachedGoal = (frog) => {
   return frog.y === 0;
+};
+
+export const objectsIdentical = (o1, o2) => {
+  return JSON.stringify(o1) === JSON.stringify(o2);
 };

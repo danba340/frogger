@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  atom,
-  useRecoilState,
-  useSetRecoilState,
-  useRecoilValue,
-} from "recoil";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
 import World from "./World";
 import Inputs from "./Inputs";
 import {
@@ -13,6 +7,7 @@ import {
   isTruckCollision,
   hasReachedGoal,
   ridingBoat,
+  objectsIdentical,
 } from "../gameHelpers";
 
 function Frogger() {
@@ -21,11 +16,17 @@ function Frogger() {
     key: "scoreState",
     default: 0,
   });
-  // High Score
-  const [highScore, setHighScore] = useLocalStorage("highScore", 0);
   const [score, setScore] = useRecoilState(scoreState);
+  // HighScore
+  const highScoreState = atom({
+    key: "highScoreState",
+    default: 0,
+  });
+  const [highScore, setHighScore] = useRecoilState(highScoreState);
   // Gameover
-  const setGameOver = useSetRecoilState(atom({ key: "gameOverState" }));
+  const [gameOver, setGameOver] = useRecoilState(
+    atom({ key: "gameOverState", default: false })
+  );
   // Frog
   const frogState = atom({ key: "frogState", default: {} });
   const [frog, setFrog] = useRecoilState(frogState);
@@ -38,34 +39,43 @@ function Frogger() {
   // Check for hit by truck
   useEffect(() => {
     if (trucks && isTruckCollision(frog, trucks)) {
-      setGameOver(true);
-      setFrog({ ...frog, dead: true });
+      if (!gameOver) {
+        setGameOver(true);
+      }
+      if (!frog.dead) {
+        setFrog({ ...frog, dead: true });
+      }
     }
-  }, [trucks, frog, setFrog, setGameOver]);
+  }, [trucks, frog, setFrog, gameOver, setGameOver]);
 
   useEffect(() => {
     // Check for drowning
     if (boats && ridingBoat(frog, boats)) {
+      console.log("riding", frog);
       const boat = ridingBoat(frog, boats);
-      if (boat.dir === "up") {
-        setFrog({ ...frog, x: boat.x - 1, y: boat.y });
-      } else {
-        setFrog({ ...frog, x: boat.x + 1, y: boat.y });
+      if (!objectsIdentical(frog, { ...frog, x: boat.x, y: boat.y })) {
+        setFrog({ ...frog, x: boat.x, y: boat.y });
       }
     } else if (boats && isDrowning(frog, boats)) {
-      setGameOver(true);
-      setFrog({ ...frog, dead: true });
+      if (!gameOver) {
+        setGameOver(true);
+      }
+      if (!frog.dead) {
+        setFrog({ ...frog, dead: true });
+      }
+      console.log("Drown", frog);
     }
-  }, [boats, frog, setFrog, setGameOver]);
+  }, [boats, frog, setFrog, gameOver, setGameOver]);
 
   useEffect(() => {
     // Check for reaching goal
     if (hasReachedGoal(frog)) {
+      debugger;
       setScore(score + 1);
-      if (score > highScore) {
-        setHighScore(score);
+      if (score + 1 > highScore) {
+        setHighScore(score + 1);
       }
-      setFrog({ ...frog, dead: true });
+      setFrog({ ...frog, x: 4, y: 8 });
     }
   }, [frog, setFrog, score, setScore, highScore, setHighScore]);
 

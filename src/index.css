@@ -14,7 +14,7 @@ h1 {
   text-align: right;
   letter-spacing: 3px;
   font-size: 3vw;
-  margin: 50px 50px 0 50px;
+  margin: 0 50px 0 50px;
   -webkit-transform: skew(-63deg, 26.6deg);
   -moz-transform: skew(-63deg, 26.6deg);
   -o-transform: skew(-63deg, 26.6deg);
@@ -26,6 +26,15 @@ h1 {
 img {
   width: 3vw;
   height: 3vw;
+}
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.w-100 {
+  width: 100%;
 }
 
 .world {
@@ -75,35 +84,59 @@ img {
   transition: top 0.35s linear, left 0.35s linear, opacity 0.5s linear;
 }
 .buttons {
-  margin-top: 100px;
-  margin-left: 20px;
-  text-align: right;
+  position: fixed;
+  min-height: 40vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.buttons > * {
+  width: 100%;
 }
 .button {
   text-align: center;
-  font-size: 26px;
-  line-height: 100px;
+  font-size: 16px;
+  line-height: 60px;
   display: inline-block;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border: 1px solid #89b549;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-right: 20px;
+  border-radius: 50%;
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1025px) {
   .button {
     display: none;
   }
 }
+@media screen and (min-width: 567px) {
+  .buttons {
+    min-height: 100vh;
+  }
+}
+@media (orientation: portrait) {
+  .buttons {
+    min-height: 40vh;
+  }
+}
 
 .score-bar {
+  width: 100%;
+  text-align: center;
   display: flex;
+  align-items: center;
+}
+.score-bar .score-wrapper {
+  display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  padding: 20px 0;
+  height: 30px;
   font-size: 3vw;
+  background: #222;
 }
 .score-bar svg {
   width: 4vw;
@@ -114,4 +147,14 @@ img {
 }
 .score-bar .score {
   margin-right: 20px;
+}
+.score-bar .button {
+  border-radius: 5px;
+  line-height: 30px;
+  height: 30px;
+  width: auto;
+  padding: 0 10px;
+  font-size: 14px;
+  background-color: #222;
+  border: 1px solid #89b549;
 }

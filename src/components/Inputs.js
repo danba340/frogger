@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 
 function Inputs() {
@@ -7,12 +7,17 @@ function Inputs() {
     default: { x: 4, y: 8, dir: "up" },
   });
   const [frog, setFrog] = useRecoilState(frogState);
-  // const inputBlockedState = atom({
-  //   key: "inputBlockedState",
-  //   default: false,
-  // });
-  // const [inputBlocked, setInputBlocked] = useRecoilState(inputBlockedState);
+  const allowInputState = atom({
+    key: "allowInputState",
+    default: true,
+  });
   const gameOver = useRecoilValue(atom({ key: "gameOverState" }));
+  const [allowInput, setAllowInput] = useRecoilState(allowInputState);
+
+  let timer = useRef(false);
+  useEffect(() => {
+    return () => clearTimeout(timer.current);
+  }, [timer]);
 
   const keyPressHandler = useCallback(
     (e) => {
@@ -23,10 +28,13 @@ function Inputs() {
       if (gameOver) {
         return;
       }
-      // if (inputBlocked) {
-      //   return;
-      // }
-      // setInputBlocked(true);
+      if (!allowInput) {
+        return;
+      }
+      setAllowInput(false);
+      timer.current = setTimeout(() => {
+        setAllowInput(true);
+      }, 350);
       if (e.keyCode === 37) {
         // left
         setFrog({
@@ -57,7 +65,7 @@ function Inputs() {
         });
       }
     },
-    [frog, setFrog, gameOver]
+    [frog, setFrog, gameOver, allowInput, setAllowInput]
   );
 
   useEffect(() => {
@@ -78,16 +86,8 @@ function Inputs() {
   // }, [inputBlockedState, setInputBlocked]);
 
   return (
-    <div className="buttons">
-      <div
-        onClick={() => {
-          keyPressHandler({ keyCode: 38 });
-        }}
-        className="button"
-      >
-        UP
-      </div>
-      <div>
+    <div className="buttons w-100">
+      <div className="flex justify-between">
         <div
           onClick={() => {
             keyPressHandler({ keyCode: 37 });
@@ -98,20 +98,30 @@ function Inputs() {
         </div>
         <div
           onClick={() => {
+            keyPressHandler({ keyCode: 38 });
+          }}
+          className="button"
+        >
+          UP
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <div
+          onClick={() => {
+            keyPressHandler({ keyCode: 40 });
+          }}
+          className="button"
+        >
+          DOWN
+        </div>
+        <div
+          onClick={() => {
             keyPressHandler({ keyCode: 39 });
           }}
           className="button"
         >
           RIGHT
         </div>
-      </div>
-      <div
-        onClick={() => {
-          keyPressHandler({ keyCode: 40 });
-        }}
-        className="button"
-      >
-        DOWN
       </div>
     </div>
   );
