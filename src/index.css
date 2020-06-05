@@ -11,15 +11,10 @@ body {
 }
 
 h1 {
-  text-align: right;
+  text-align: center;
   letter-spacing: 3px;
   font-size: 3vw;
   margin: 0 50px 0 50px;
-  -webkit-transform: skew(-63deg, 26.6deg);
-  -moz-transform: skew(-63deg, 26.6deg);
-  -o-transform: skew(-63deg, 26.6deg);
-  -ms-transform: skew(-63deg, 26.6deg);
-  transform: skew(-63deg, 26.6deg);
 }
 
 img {

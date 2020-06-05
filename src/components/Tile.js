@@ -1,7 +1,7 @@
 import React from "react";
 
 function Tile() {
-  return "";
+  return <img />;
 }
 
 export default Tile;
