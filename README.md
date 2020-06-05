@@ -1,4 +1,4 @@
-`<Frog x={0} y={0} /> <Frog x={1} y={1} /> <Frog x={2} y={2} /> <Frog x={3} y={3} /> <Frog x={4} y={4} /> <Frog x={5} y={5} /> <Frog x={6} y={6} /> <Frog x={7} y={7} /> <Frog x={8} y={8} /> <Frog x={0} y={1} /> <Frog x={0} y={2} /> <Frog x={0} y={3} /> <Frog x={0} y={4} /> <Frog x={0} y={5} /> <Frog x={0} y={6} /> <Frog x={0} y={7} /> <Frog x={0} y={8} /> <Frog x={1} y={0} /> <Frog x={2} y={0} /> <Frog x={3} y={0} /> <Frog x={4} y={0} /> <Frog x={5} y={0} /> <Frog x={6} y={0} /> <Frog x={7} y={0} /> <Frog x={8} y={0} />`
+![Screenshot](./screenshot.png "Game preview")
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
