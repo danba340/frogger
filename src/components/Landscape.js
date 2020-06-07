@@ -39,57 +39,24 @@ function Landscape() {
           const z = x + 100;
           const xAbs = xBase + (50 / 9) * x;
           const yAbs = yBase + yOffset * x;
+          let src;
           if (tile === "grass") {
-            return (
-              <Tile key={`${x}${y}`} src={grass} x={xAbs} y={yAbs} z={z} />
-            );
+            src = grass;
           } else if (tile === "road") {
-            return <Tile key={`${x}${y}`} src={road} x={xAbs} y={yAbs} z={z} />;
+            src = road;
           } else if (tile === "water") {
-            return (
-              <Tile key={`${x}${y}`} src={water} x={xAbs} y={yAbs} z={z} />
-            );
+            src = water;
           } else if (tile === "roadGrassAbove") {
-            return (
-              <Tile
-                key={`${x}${y}`}
-                src={roadGrassAbove}
-                x={xAbs}
-                y={yAbs}
-                z={z}
-              />
-            );
+            src = roadGrassAbove;
           } else if (tile === "roadGrassBelow") {
-            return (
-              <Tile
-                key={`${x}${y}`}
-                src={roadGrassBelow}
-                x={xAbs}
-                y={yAbs}
-                z={z}
-              />
-            );
+            src = roadGrassBelow;
           } else if (tile === "waterGrassAbove") {
-            return (
-              <Tile
-                key={`${x}${y}`}
-                src={waterGrassAbove}
-                x={xAbs}
-                y={yAbs}
-                z={z}
-              />
-            );
-          } else {
-            return (
-              <Tile
-                key={`${x}${y}`}
-                src={waterGrassBelow}
-                x={xAbs}
-                y={yAbs}
-                z={z}
-              />
-            );
+            src = waterGrassAbove;
+          } else if (tile === "waterGrassBelow") {
+            src = waterGrassBelow;
           }
+
+          return <Tile key={`${x}${y}`} src={src} x={xAbs} y={yAbs} z={z} />;
         });
       })}
     </>
