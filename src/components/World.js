@@ -8,9 +8,6 @@ function World() {
   return (
     <div className="world">
       <Landscape />
-      <Trucks />
-      <Boats />
-      <Frog />
     </div>
   );
 }
