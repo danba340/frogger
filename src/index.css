@@ -52,4 +52,19 @@ img {
 .boat,
 .truck {
   position: absolute;
+  z-index: 1000;
+  transition: top 350ms linear, left 350ms linear, opacity 350ms linear;
+}
+
+.truck {
+  z-index: 1100;
+}
+
+.frog {
+  z-index: 1000;
+}
+
+.boat {
+  transform: rotate(-10deg);
+  z-index: 900;
 }
