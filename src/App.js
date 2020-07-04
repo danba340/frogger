@@ -1,13 +1,13 @@
 import React from "react";
 import { RecoilRoot } from "recoil";
-import ScoreBar from "./components/ScoreBar";
+// import ScoreBar from "./components/ScoreBar";
 import Frogger from "./components/Frogger";
 
 function App() {
   return (
     <RecoilRoot>
       <div className="App">
-        <ScoreBar />
+        {/* <ScoreBar /> */}
         <h1>
           <span role="img" aria-label="flag">
             🏁
