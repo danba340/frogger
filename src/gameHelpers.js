@@ -15,7 +15,13 @@ export const isDrowning = (frog, boats) => {
   }
 };
 
-export const ridingBoat = (frog, boats) => {
+export const getRiddenBoat = (frog, boats) => {
+  return boats.find((boat) => {
+    return boat.y === frog.y && Math.abs(boat.x - frog.x) <= 1;
+  });
+};
+
+export const isRidingBoat = (frog, boats) => {
   return boats.find((boat) => {
     return boat.y === frog.y && Math.abs(boat.x - frog.x) <= 1;
   });

@@ -6,7 +6,8 @@ import {
   isDrowning,
   isTruckCollision,
   hasReachedGoal,
-  ridingBoat,
+  getRiddenBoat,
+  isRidingBoat,
   objectsIdentical,
 } from "../gameHelpers";
 
@@ -50,9 +51,9 @@ function Frogger() {
 
   useEffect(() => {
     // Check for drowning
-    if (boats && ridingBoat(frog, boats)) {
+    if (boats && isRidingBoat(frog, boats)) {
       console.log("riding", frog);
-      const boat = ridingBoat(frog, boats);
+      const boat = getRiddenBoat(frog, boats);
       if (!objectsIdentical(frog, { ...frog, x: boat.x, y: boat.y })) {
         setFrog({ ...frog, x: boat.x, y: boat.y });
       }
